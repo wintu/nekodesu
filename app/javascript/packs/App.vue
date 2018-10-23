@@ -18,4 +18,5 @@ export default {
 </script>
 
 <style lang="stylus">
+@import 'vuesax/dist/vuesax.css'
 </style>

@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Axios from 'axios'
+import Vuesax from 'vuesax'
 import App from './App.vue'
 
 Vue.use(Router)
+Vue.use(Vuesax)
 
 Vue.mixin({
   methods: {
