@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Axios from 'axios'
 import Vuesax from 'vuesax'
-import App from './App.vue'
+import App from '../src/App.vue'
 
 Vue.use(Router)
 Vue.use(Vuesax)
@@ -32,7 +32,8 @@ Vue.mixin({
 })
 
 const routes = [
-  { path: '/', component: require('./components/HelloWorld.vue').default }
+  { path: '/', component: require('../src/components/Top.vue').default },
+  { path: '/login', component: require('../src/components/auth/Login.vue').default }
 ]
 
 const router = new Router({
