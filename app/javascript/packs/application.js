@@ -20,7 +20,8 @@ Vue.mixin({
 
     async ApiPost (endPoint, params) {
       try {
-        const token = document.getElementsByTagName('meta').find(meta => meta.name === 'csrf-token')
+        const metaTags = document.getElementsByTagName('meta')
+        const token = Array.from(metaTags).find(meta => meta.name === 'csrf-token')
         params.authenticity_token = token.content
         const res = await Axios.post(endPoint, params)
         return res.data

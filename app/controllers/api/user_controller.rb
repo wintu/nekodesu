@@ -1,14 +1,16 @@
 class Api::UserController < ApplicationController
 
   def login
-    user = User.find_by(email: params[:email])
-    return render json: { error: 'not found' } if user.blank?
+    user = User.find_by!(email: params[:email])
     if user.authenticate(params[:password])
       session[:user_id] = user.id
       render json: user
     else
-      render json: { error: 'not found' }
+      render_404
     end
+  end
+
+  def create
   end
 
   def logout

@@ -1,5 +1,5 @@
 <template>
-  <div class="login-view">
+  <div class="register-view">
     <vs-row>
       <vs-col vs-offset="2" vs-w="8" class="input-container">
         <h1 class="title">LOGIN</h1>
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'Register',
   props: ['common'],
 
   data() {
@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="stylus">
-  .login-view
+  .register-view
     .input-container
       position relative
       width 100%

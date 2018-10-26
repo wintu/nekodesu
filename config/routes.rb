@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :api do
-    get  '/'                                       => 'user#index'
+    scope :user do
+      post '/login'                                => 'user#login'
+    end
   end
 
   get  '*path'                                     => 'home#index'
