@@ -2,8 +2,9 @@
   <div class="register-view">
     <vs-row>
       <vs-col vs-offset="2" vs-w="8" class="input-container">
-        <h1 class="title">LOGIN</h1>
+        <h1 class="title">REGISTER</h1>
         <div class="inputs">
+          <vs-input vs-label="Name" vs-placeholder="Placeholder" v-model="name" class="login-input"/>
           <vs-input vs-label="Email" vs-placeholder="Placeholder" v-model="email" class="login-input"/>
           <vs-input vs-label="Password" type="password" vs-placeholder="Placeholder" v-model="password" class="login-input"/>
         </div>
@@ -12,7 +13,7 @@
 
     <vs-row>
       <vs-col vs-offset="2" vs-w="8" vs-type="flex" vs-justify="center" vs-align="center" class="buttons">
-        <vs-button vs-type="relief" vs-size="large" @click="send()">ログイン</vs-button>
+        <vs-button vs-type="relief" vs-size="large" @click="send()">新規登録</vs-button>
       </vs-col>
     </vs-row>
   </div>
@@ -25,6 +26,7 @@ export default {
 
   data() {
     return {
+      name: '',
       email: '',
       password: ''
     }
@@ -32,7 +34,8 @@ export default {
 
   methods: {
     async send() {
-      const res = await this.ApiPost('/api/user/login', {
+      const res = await this.ApiPost('/api/user/create', {
+        name: this.name,
         email: this.email,
         password: this.password
       })

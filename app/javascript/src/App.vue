@@ -32,10 +32,22 @@ export default {
   data() {
     return ({
       common: {
-        test: 1
+        loginUser: undefined
       },
       activeItem: 0
     })
+  },
+
+  async created() {
+    await this.fetchLoginUser()
+  },
+
+  methods: {
+    async fetchLoginUser() {
+      const data = await this.ApiGet('/api/user/current_login_user')
+      if (!data.ok) return
+      this.common.loginUser = data.user
+    }
   }
 }
 </script>

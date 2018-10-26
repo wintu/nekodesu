@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     scope :user do
       post '/login'                                => 'user#login'
+      post '/create'                               => 'user#create'
     end
   end
 
