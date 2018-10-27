@@ -6,6 +6,10 @@ Rails.application.routes.draw do
       post '/login'                                => 'user#login'
       post '/create'                               => 'user#create'
     end
+
+    scope :file do
+      post '/upload'                               => 'file#upload'
+    end
   end
 
   get  '*path'                                     => 'home#index'

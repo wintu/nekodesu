@@ -40,6 +40,7 @@ development:
     public: localhost:3035
     hmr: false
     # Inline should be set to true if using HMR
+    history_api_fallback: true
     inline: true
     overlay: true
     compress: true

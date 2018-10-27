@@ -13,6 +13,7 @@
     <vs-row>
       <vs-col vs-offset="2" vs-w="8" vs-type="flex" vs-justify="center" vs-align="center" class="buttons">
         <vs-button vs-type="relief" vs-size="large" @click="send()">ログイン</vs-button>
+        <vs-button vs-type="relief" color="success" vs-size="large" @click="jump()" class="register-button">新規登録</vs-button>
       </vs-col>
     </vs-row>
   </div>
@@ -37,6 +38,10 @@ export default {
         password: this.password
       })
       console.log(res)
+    },
+
+    jump() {
+      this.$router.push('/register')
     }
   }
 }
@@ -56,6 +61,8 @@ export default {
      text-align left
     .buttons
       margin 20px 0
+    .register-button
+      margin-left 10px
 
 
 </style>
