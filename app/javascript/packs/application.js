@@ -36,6 +36,8 @@ const routes = [
   { path: '/', component: require('../src/components/Top.vue').default },
   { path: '/login', component: require('../src/components/auth/Login.vue').default },
   { path: '/register', component: require('../src/components/auth/Register.vue').default },
+  { path: '/search', component: require('../src/components/Search.vue').default },
+  { path: '/details/:id', component: require('../src/components/Details.vue').default },
   { path: '/upload', component: require('../src/components/Upload.vue').default, meta: { requiresAuth: true } }
 ]
 

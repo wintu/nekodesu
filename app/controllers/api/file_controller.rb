@@ -22,11 +22,11 @@ class Api::FileController < ApplicationController
 
   def details
     data_set = DataSet.find(params[:id])
-    render json: data_set
+    render json: { ok: 1, result: ActiveModel::SerializableResource.new(data_set) }
   end
 
   def data
     datum = Datum.find(params[:id])
-    render json: datum
+    render json: { ok: 1, result: ActiveModel::SerializableResource.new(datum) }
   end
 end

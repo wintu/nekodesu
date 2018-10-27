@@ -79,4 +79,11 @@ export default {
       h1
         color #fff
         font-weight bold
+    .container
+      width 80%
+      position relative
+      margin 0 auto
+    .centerx
+      display flex
+      justify-content center
 </style>

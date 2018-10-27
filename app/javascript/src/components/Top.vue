@@ -17,7 +17,7 @@
       </div>
 
       <div class="button-box">
-        <vs-button color="primary" type="border" icon="search">検索</vs-button>
+        <vs-button color="primary" type="border" icon="search" @click="redirectSearchPage">検索</vs-button>
       </div>
     </section>
     
@@ -38,6 +38,12 @@ export default {
         { text: 'タグ', value: 'tag' },
         { text: 'カテゴリー', value: 'category' }
       ]
+    }
+  },
+
+  methods: {
+    redirectSearchPage() {
+      this.$router.push(`/search?mode=${this.searchMode}&q=${this.search}`)
     }
   }
 }
