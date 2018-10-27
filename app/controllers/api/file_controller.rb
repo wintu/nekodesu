@@ -1,6 +1,6 @@
 class Api::FileController < ApplicationController
   require 'csv'
-  protect_from_forgery except: :upload
+  protect_from_forgery except: [:upload, :details]
 
   def upload
     body = File.read(params[:upload_file].path).encode(Encoding::UTF_8, undef: :replace, invalid: :replace)
@@ -18,5 +18,15 @@ class Api::FileController < ApplicationController
       Datum.create!(body: csv.to_s, data_set_id: data_set.id, user_id: session[:user_id])
     end
       render json: { ok: 1, data_set_id: data_set.id }
+  end
+
+  def details
+    data_set = DataSet.find(params[:id])
+    render json: data_set
+  end
+
+  def data
+    datum = Datum.find(params[:id])
+    render json: datum
   end
 end
