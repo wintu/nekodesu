@@ -30,12 +30,12 @@ export default {
   name: 'App',
 
   data() {
-    return ({
+    return {
       common: {
         loginUser: undefined
       },
       activeItem: 0
-    })
+    }
   },
 
   async created() {
@@ -46,7 +46,7 @@ export default {
     async fetchLoginUser() {
       const data = await this.ApiGet('/api/user/current_login_user')
       if (!data.ok) return
-      this.common.loginUser = data.user
+      this.common.loginUser = data
     }
   }
 }
