@@ -27,7 +27,7 @@ class Api::UserController < ApplicationController
   end
 
   def current_login_user
-    user = User.find!(session[:user_id])
+    user = User.find(session[:user_id])
     render json: user
   end
 

@@ -5,7 +5,7 @@
         <h1 class="title">REGISTER</h1>
         <div class="inputs">
           <vs-input vs-label="Name" vs-placeholder="Placeholder" v-model="name" class="login-input"/>
-          <vs-input vs-label="Email" vs-placeholder="Placeholder" v-model="email" class="login-input"/>
+          <vs-input vs-label="Email" vs-placeholder="Placeholder" type="email" v-model="email" class="login-input"/>
           <vs-input vs-label="Password" type="password" vs-placeholder="Placeholder" v-model="password" class="login-input"/>
         </div>
       </vs-col>
@@ -32,6 +32,14 @@ export default {
     }
   },
 
+  created() {
+    console.log(this.common)
+    if (this.common.loginUser) {
+      this.$vs.notify({color:'success',title:'ログイン済み',text: '既にログイン済みです。'})
+      this.$router.push('/')
+    }
+  },
+
   methods: {
     async send() {
       const res = await this.ApiPost('/api/user/create', {
@@ -39,7 +47,13 @@ export default {
         email: this.email,
         password: this.password
       })
-      console.log(res)
+      if (!res.ok) {
+        this.$vs.notify({color:'danger',title:'エラー',text: 'アカウントの作成に失敗しました。'})
+        return
+      }
+      this.common.loginUser = res
+      this.$vs.notify({color:'success',title:'ログイン成功',text: `ようこそ${res.name}さん！`})
+      this.$router.push('/')
     }
   }
 }

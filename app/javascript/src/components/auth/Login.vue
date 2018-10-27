@@ -4,7 +4,7 @@
       <vs-col vs-offset="2" vs-w="8" class="input-container">
         <h1 class="title">LOGIN</h1>
         <div class="inputs">
-          <vs-input vs-label="Email" vs-placeholder="Placeholder" v-model="email" class="login-input"/>
+          <vs-input vs-label="Email" vs-placeholder="Placeholder" type="email" v-model="email" class="login-input"/>
           <vs-input vs-label="Password" type="password" vs-placeholder="Placeholder" v-model="password" class="login-input"/>
         </div>
       </vs-col>
@@ -31,13 +31,26 @@ export default {
     }
   },
 
+  created() {
+    if (this.common.loginUser) {
+      this.$vs.notify({color:'success',title:'ログイン済み',text: '既にログイン済みです。'})
+      this.$router.push('/')
+    }
+  },
+
   methods: {
     async send() {
       const res = await this.ApiPost('/api/user/login', {
         email: this.email,
         password: this.password
       })
-      console.log(res)
+      if (!res.ok) {
+        this.$vs.notify({color:'danger',title:'ログイン失敗',text: 'パスワードとIDをもう一度お確かめください。'})
+        return
+      }
+      this.common.loginUser = res
+      this.$vs.notify({color:'success',title:'ログイン成功',text: `ようこそ${res.name}さん！`})
+      this.$router.push('/')
     },
 
     jump() {
