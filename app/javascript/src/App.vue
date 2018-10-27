@@ -8,15 +8,15 @@
       </vs-navbar-title>
 
       <vs-navbar-item index="0">
-        <a href="#">Home</a>
+        <router-link to="/">Home</router-link>
       </vs-navbar-item>
       <vs-navbar-item index="1">
-        <a href="#">News</a>
+        <router-link to="/">News</router-link>
       </vs-navbar-item>
 
       <vs-spacer></vs-spacer>
       <vs-navbar-item>
-        <a href="#">Login</a>
+        <router-link to="/login">Login</router-link>
       </vs-navbar-item>
     </vs-navbar>
 
