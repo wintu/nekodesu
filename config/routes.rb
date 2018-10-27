@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :api do
-    get 'search'=>'search#index'
     scope :user do
       post '/login'                                => 'user#login'
       post '/create'                               => 'user#create'
@@ -11,7 +10,17 @@ Rails.application.routes.draw do
 
     scope :file do
       post '/upload'                               => 'file#upload'
+      scope ':id' do
+        get  '/details'                            => 'file#details'
+        get  '/data'                               => 'file#data'
+      end
     end
+
+    scope :search do
+      get '/title'                                         => 'search#title'
+      get '/category'                                      => 'search#category'
+      get '/tag'                                           => 'search#tag'
+   end
   end
   get  '*path'                                     => 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

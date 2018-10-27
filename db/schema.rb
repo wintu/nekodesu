@@ -12,6 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2018_10_27_084011) do
 
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "data_set_id"
@@ -20,12 +26,6 @@ ActiveRecord::Schema.define(version: 2018_10_27_084011) do
     t.datetime "updated_at", null: false
     t.index ["data_set_id"], name: "index_data_on_data_set_id"
     t.index ["user_id"], name: "index_data_on_user_id"
-  end
-
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "data_sets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
