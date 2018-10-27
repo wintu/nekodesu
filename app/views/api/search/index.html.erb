@@ -1,14 +1,42 @@
 <h3>カテゴリー検索</h3>
 <form action="/api/search" method="get">
-  <select name="name">
+  <select name="ca_id">
     <option value="">選択して下さい</option>
-    <option value="hoge">Hoge</option>
+    <option value="1">Hoge</option>
   </select>
   <input type="submit" value="検索">
 </form>
 
 <% @categorys.each do |category| %>
-  <%= category.name%>
+  <%= category.title%>
+  <%= category.user.name%>
   <%= category.created_at%>
   
 <%end%>
+
+<h3>タイトル検索</h3>
+<form action="/api/search" method="get">
+  <input type="text" name="title">
+  <input type="submit" value="検索">
+</form>
+
+  <% @datas.each do |data| %>
+    <%= data.title%>
+    <%= data.user.name%>
+    <%= data.created_at%>
+  <%end%>
+
+<h3>タグ検索</h3>
+<form action="/api/search" method="get">
+  <input type="search" name="tag">
+  <input type="submit" value="検索">
+</form>
+
+<% if @tags %>
+  <% @tags.each do |tag| %>
+    <%= tag.title%>
+    <%= tag.user.name%>
+    <%= tag.created_at%>
+  <%end%>
+<%end%>
+
