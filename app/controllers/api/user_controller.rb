@@ -23,7 +23,7 @@ class Api::UserController < ApplicationController
 
   def logout
     reset_session
-    render json: { ok: 1 }
+    redirect_to '/'
   end
 
   def current_login_user

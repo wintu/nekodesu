@@ -6919,9 +6919,9 @@ vue@^2.5.17:
   integrity sha512-mFbcWoDIJi0w0Za4emyLiW72Jae0yjANHbCVquMKijcavBGypqlF7zHRgMa5k4sesdv7hv2rB4JPdZfR+TPfhQ==
 
 vuesax@^3.5.6:
-  version "3.5.6"
-  resolved "https://registry.yarnpkg.com/vuesax/-/vuesax-3.5.6.tgz#fa550c301c8c24a40576dd78b3ecf052157ee83a"
-  integrity sha512-mRF75+Di5dA01lw1OtGLoFyq8FIjgU7bOTuUi4btG6U6TPWVHFgYB9ZPQvmkar3Fq3MVRjYZRhl8iZbF4xAueQ==
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/vuesax/-/vuesax-3.6.0.tgz#0980ee0336e8a617c22f8b5c02967e026cf86c36"
+  integrity sha512-FNBKUszUdV76ROlOdIKd4vRO/lUh937yCnE2AzQAwpDIou9D39mifvatc4Re6Uo73DpVj7C/tWt/1GaJ3zPubw==
   dependencies:
     vue "^2.5.17"
 

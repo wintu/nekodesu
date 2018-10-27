@@ -33,8 +33,7 @@ export default {
   },
 
   created() {
-    console.log(this.common)
-    if (this.common.loginUser) {
+    if (this.common.isLogin) {
       this.$vs.notify({color:'success',title:'ログイン済み',text: '既にログイン済みです。'})
       this.$router.push('/')
     }
@@ -52,6 +51,7 @@ export default {
         return
       }
       this.common.loginUser = res
+      this.common.isLogin = true
       this.$vs.notify({color:'success',title:'ログイン成功',text: `ようこそ${res.name}さん！`})
       this.$router.push('/')
     }

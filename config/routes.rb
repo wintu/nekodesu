@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     scope :user do
       post '/login'                                => 'user#login'
       post '/create'                               => 'user#create'
-      get  '/current_login_user'                   =>  'user#current_login_user'
+      get  '/current_login_user'                   => 'user#current_login_user'
+      get  '/logout'                               => 'user#logout'
     end
 
     scope :file do
