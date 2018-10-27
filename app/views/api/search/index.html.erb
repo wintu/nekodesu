@@ -1,0 +1,14 @@
+<h3>カテゴリー検索</h3>
+<form action="/api/search" method="get">
+  <select name="name">
+    <option value="">選択して下さい</option>
+    <option value="hoge">Hoge</option>
+  </select>
+  <input type="submit" value="検索">
+</form>
+
+<% @categorys.each do |category| %>
+  <%= category.name%>
+  <%= category.created_at%>
+  
+<%end%>
