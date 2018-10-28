@@ -46,6 +46,15 @@ const router = new Router({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  console.log(to.matched.some(record => record.meta.requiresAuth))
+  if (to.matched.some(record => record.meta.requiresAuth) && !window.isLogin) {
+    next({ path: '/login' })
+  } else {
+    next()
+  }
+})
+
 document.addEventListener('DOMContentLoaded', () => {
   new Vue({
     el: '#app',

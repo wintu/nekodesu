@@ -33,27 +33,28 @@
       </vs-col>
     </vs-row>
 
-    <vs-row v-if="this.uploadFile">
-          <vs-col vs-offset="2" vs-w="4" vs-type="flex" vs-justify="center" vs-align="center" >
-            <vs-select
-              label="表示方法"
-              class="login-input"
-              v-model="displayType"
-            >
-              <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item,index) in displayTypes" />
-            </vs-select>
-          </vs-col>
+    <vs-row v-if="uploadFile && targetLabel">
+      <vs-col vs-offset="2" vs-w="4" vs-type="flex" vs-justify="center" vs-align="center" >
+        <vs-select
+          label="表示方法"
+          class="login-input"
+          v-model="displayType"
+        >
+          <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item,index) in displayTypes" />
+        </vs-select>
+      </vs-col>
 
-          <vs-col vs-w="4" vs-type="flex" vs-justify="center" vs-align="center" >
-            <vs-select
-              label="指標になる項目"
-              class="login-input"
-              v-model="targetLabel"
-            >
-              <vs-select-item :key="index" :value="item" :text="item" v-for="(item,index) in fileHeaders" />
-            </vs-select>
-          </vs-col>
-        </vs-row>
+      <vs-col vs-w="4" vs-type="flex" vs-justify="center" vs-align="center" >
+        <vs-select
+          label="指標になる項目"
+          class="login-input"
+          v-model="targetLabel"
+          :disabled="this.displayType === 0"
+        >
+          <vs-select-item :key="index" :value="item" :text="item" v-for="(item,index) in fileHeaders" />
+        </vs-select>
+      </vs-col>
+    </vs-row>
 
     <vs-row>
       <vs-col vs-offset="2" vs-w="8" vs-type="flex" vs-justify="center" vs-align="center" class="buttons">
@@ -121,7 +122,12 @@ export default {
       params.append('target_label', this.targetLabel)
       params.append('display_type', this.displayType)
       const res = await this.ApiPost('/api/file/upload', params)
-      console.log(res)
+      if (!res.ok) {
+        this.$vs.notify({color:'danger',title:'アップロード失敗',text: '適切なフォーマットかどうかを確認お願いします。'})
+        return
+      }
+      this.$vs.notify({color:'success',title:'アップロード成功',text: `ファイルは正常に登録されました！ 協力に感謝します！！`})
+      this.$router.push(`/details/${res.data_set_id}`)
       
     },
 

@@ -1,6 +1,5 @@
 class Api::FileController < ApplicationController
   require 'csv'
-  protect_from_forgery except: [:upload, :details]
 
   def upload
     body = File.read(params[:upload_file].path).encode(Encoding::UTF_8, undef: :replace, invalid: :replace)
@@ -45,4 +44,15 @@ class Api::FileController < ApplicationController
     datum = Datum.find_by(data_set_id: params[:id])
     render json: { ok: 1, result: ActiveModel::SerializableResource.new(datum) }
   end
+
+  def download
+    datum = Datum.find_by(data_set_id: params[:id])
+    send_data datum.body.encode(Encoding::SHIFT_JIS, undef: :replace, invalid: :replace), type:'text/csv; charset=shift_jis'
+  end
+
+  def destroy
+    data = DataSet.find(params[:id])
+    data.destroy
+  end
+
 end

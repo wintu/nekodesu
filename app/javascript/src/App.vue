@@ -1,9 +1,10 @@
 <template>
   <div class="app-view">
-    <vs-navbar v-model="activeItem" class="nabarx">
+    <vs-navbar class="nabarx">
       <!-- <vs-button vs-type="flat" vs-radius="50%" vs-icon="menu"></vs-button> -->
 
-      <vs-navbar-title>
+      <vs-navbar-title class="logo-box">
+        <img src="/icon.png" class="logo" alt="">
         SheReco
       </vs-navbar-title>
 
@@ -40,8 +41,7 @@ export default {
       common: {
         isLogin: window.isLogin || false,
         loginUser: undefined
-      },
-      activeItem: 0
+      }
     }
   },
 
@@ -58,6 +58,7 @@ export default {
     },
 
     logout() {
+      window.isLogin = false
       this.common.isLogin = false
       this.common.loginUser = undefined
       window.location = '/api/user/logout'
@@ -86,4 +87,10 @@ export default {
     .centerx
       display flex
       justify-content center
+    .logo
+      width 30px
+    .logo-box
+      display flex
+      justify-content flex-start
+      align-items center
 </style>
