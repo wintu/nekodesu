@@ -1,6 +1,8 @@
 class Api::FileController < ApplicationController
   require 'csv'
 
+  before_action :check_login, only: [:upload]
+
   def upload
     body = File.read(params[:upload_file].path).encode(Encoding::UTF_8, undef: :replace, invalid: :replace)
     csv = CSV.parse(body.sub(/\A\uFEFF/, ""), headers: true)
