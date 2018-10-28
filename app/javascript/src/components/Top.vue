@@ -2,7 +2,7 @@
   <div class="top-view">
 
     <section class="concept">
-      <h1>統計の共有</h1>
+      <h1>統計の共有をしよう！</h1>
     </section>
 
     <section class="search-box">

@@ -64,5 +64,7 @@ export default {
         font-weight bold
       .tag
         height 30px
+      .desc
+        word-break break-all
 </style>
 

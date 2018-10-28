@@ -1,6 +1,6 @@
 <template>
   <div class="app-view">
-    <vs-navbar v-model="activeItem" class="nabarx">
+    <vs-navbar class="nabarx">
       <!-- <vs-button vs-type="flat" vs-radius="50%" vs-icon="menu"></vs-button> -->
 
       <vs-navbar-title class="logo-box">
@@ -41,8 +41,7 @@ export default {
       common: {
         isLogin: window.isLogin || false,
         loginUser: undefined
-      },
-      activeItem: 0
+      }
     }
   },
 
