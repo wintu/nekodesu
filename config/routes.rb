@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       scope ':id' do
         get  '/details'                            => 'file#details'
         get  '/data'                               => 'file#data'
+        get  '/download'                           => 'file#download'
       end
     end
 
