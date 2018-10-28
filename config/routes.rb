@@ -18,10 +18,16 @@ Rails.application.routes.draw do
     end
 
     scope :search do
-      get '/title'                                         => 'search#title'
-      get '/category'                                      => 'search#category'
-      get '/tag'                                           => 'search#tag'
-   end
+      get '/title'                                  => 'search#title'
+      get '/category'                               => 'search#category'
+      get '/tag'                                    => 'search#tag'
+    end
+
+    scope :suggest do
+      get '/title'                                  => 'suggest#title'
+      get '/category'                               => 'suggest#category'
+      get '/tag'                                    => 'suggest#tag'
+    end
   end
   get  '*path'                                     => 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

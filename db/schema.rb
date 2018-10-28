@@ -19,13 +19,13 @@ ActiveRecord::Schema.define(version: 2018_10_27_084011) do
   end
 
   create_table "data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "data_set_id"
+    t.integer "data_set_id", null: false
+    t.integer "display_type", default: 0, null: false
+    t.string "target_label"
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["data_set_id"], name: "index_data_on_data_set_id"
-    t.index ["user_id"], name: "index_data_on_user_id"
   end
 
   create_table "data_sets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

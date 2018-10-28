@@ -1,5 +1,5 @@
 class DatumSerializer < ActiveModel::Serializer
-  attributes :ok, :body
+  attributes :ok, :body, :display_type, :target_label
 
   def body
     object.convert_hash
