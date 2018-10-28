@@ -58,6 +58,7 @@ export default {
     },
 
     logout() {
+      window.isLogin = false
       this.common.isLogin = false
       this.common.loginUser = undefined
       window.location = '/api/user/logout'

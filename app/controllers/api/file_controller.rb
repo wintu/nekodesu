@@ -1,6 +1,5 @@
 class Api::FileController < ApplicationController
   require 'csv'
-  protect_from_forgery except: [:upload, :details]
 
   def upload
     body = File.read(params[:upload_file].path).encode(Encoding::UTF_8, undef: :replace, invalid: :replace)

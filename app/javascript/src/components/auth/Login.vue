@@ -4,8 +4,8 @@
       <vs-col vs-offset="2" vs-w="8" class="input-container">
         <h1 class="title">LOGIN</h1>
         <div class="inputs">
-          <vs-input vs-label="Email" vs-placeholder="Placeholder" type="email" v-model="email" class="login-input"/>
-          <vs-input vs-label="Password" type="password" vs-placeholder="Placeholder" v-model="password" class="login-input"/>
+          <vs-input label="Email" placeholder="hoge@example.com" type="email" v-model="email" class="login-input"/>
+          <vs-input label="Password" type="password" v-model="password" class="login-input"/>
         </div>
       </vs-col>
     </vs-row>
@@ -50,6 +50,7 @@ export default {
       }
       this.common.loginUser = res
       this.common.isLogin = true
+      window.isLogin = true
       this.$vs.notify({color:'success',title:'ログイン成功',text: `ようこそ${res.name}さん！`})
       this.$router.push('/')
     },
