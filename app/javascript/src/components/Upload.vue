@@ -113,6 +113,9 @@ export default {
 
     async send() {
       const params = new FormData()
+      const metaTags = document.getElementsByTagName('meta')
+      const token = Array.from(metaTags).find(meta => meta.name === 'csrf-token')
+      const authenticity_token = token.content
       params.append('upload_file', this.uploadFile)
       params.append('title', this.title)
       params.append('description', this.description)
@@ -121,6 +124,7 @@ export default {
       params.append('tags', this.tags.join(','))
       params.append('target_label', this.targetLabel)
       params.append('display_type', this.displayType)
+      params.append('authenticity_token', authenticity_token)
       const res = await this.ApiPost('/api/file/upload', params)
       if (!res.ok) {
         this.$vs.notify({color:'danger',title:'アップロード失敗',text: '適切なフォーマットかどうかを確認お願いします。'})
