@@ -47,7 +47,13 @@
       </div>
 
       <div class="graph-column" v-if="datum && datum.display_type === 1">
-        <bar-chart :targetLabelValues="targetLabelValues" targetLabel="hogehoge" :targetData="targetData" />
+        <vs-select
+          class="login-input"
+          v-model="selectLabel"
+        >
+          <vs-select-item :key="index" :value="item" :text="item" v-for="(item,index) in filterHeaders" />
+        </vs-select>
+        <bar-chart :chartData="chartData(targetLabelValues, selectLabel, targetData(selectLabel))" :options="{}" />
       </div>
 
     </div>
@@ -66,7 +72,7 @@ export default {
     return {
       dataSet: undefined,
       datum: undefined,
-      
+      selectLabel: '',
     }
   },
 
@@ -82,9 +88,9 @@ export default {
       return this.datum.body.slice(1).map(data => Object.values(data)[idx])
     },
 
-    targetData() {
+    filterHeaders() {
       if (!this.datum) return
-      return this.datum.body.slice(1).map(data => ~~Object.values(data)[2].split(',').join(''))
+      return Object.keys(this.datum.body[0]).filter(head => head !== this.datum.target_label)
     }
   },
 
@@ -100,6 +106,26 @@ export default {
       const res = await this.ApiGet(`/api/file/${this.$route.params.id}/data`)
       if (!res.ok) return
       this.datum = res.result
+      this.selectLabel = this.filterHeaders[0]
+    },
+
+    targetData(selectLabel) {
+      if (!this.datum) return
+      const idx = Object.keys(this.datum.body[0]).indexOf(selectLabel)
+      return this.datum.body.slice(1).map(data => ~~Object.values(data)[idx].split(',').join(''))
+    },
+
+    chartData(targetLabelValues, selectLabel, targetData) {
+      return {
+        labels: targetLabelValues,
+        datasets: [
+          {
+            label: selectLabel,
+            backgroundColor: '#f87979',
+            data: targetData
+          }
+        ]
+      }
     }
   }
 }

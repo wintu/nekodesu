@@ -1,19 +1,11 @@
-import { Bar } from 'vue-chartjs'
+import { Bar, mixins } from 'vue-chartjs'
 
 export default {
   extends: Bar,
-  props: ['targetLabelValues', 'targetLabel', 'targetData'],
+  mixins: [mixins.reactiveProp],
+  props: ['chartData', 'options'],
   mounted () {
     // Overwriting base render method with actual data.
-    this.renderChart({
-      labels: this.targetLabelValues,
-      datasets: [
-        {
-          label: this.targetLabel,
-          backgroundColor: '#f87979',
-          data: this.targetData
-        }
-      ]
-    })
+    this.renderChart(this.chartData, this.options)
   }
 }
