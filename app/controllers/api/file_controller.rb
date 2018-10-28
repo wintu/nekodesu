@@ -29,4 +29,15 @@ class Api::FileController < ApplicationController
     datum = Datum.find(params[:id])
     render json: { ok: 1, result: ActiveModel::SerializableResource.new(datum) }
   end
+
+  def download
+    datum = Datum.find(params[:id])
+    send_data datum.body, type:'text/csv; charset=shift_jis'
+  end
+
+  def destroy
+    data = DataSet.find(params[:id])
+    data.destroy
+  end
+
 end
