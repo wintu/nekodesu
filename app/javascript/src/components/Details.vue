@@ -25,7 +25,7 @@
           <div class="description">{{dataSet.description}}</div>
         </div>
         <div class="centerx">
-          <vs-button color="primary" type="border" icon="arrow_downward">CSVダウンロード</vs-button>
+          <vs-button color="primary" type="border" icon="arrow_downward" @click="download">CSVダウンロード</vs-button>
         </div>
       </div>
       <div class="graph-column" v-if="datum && datum.display_type === 0">
@@ -126,6 +126,10 @@ export default {
           }
         ]
       }
+    },
+
+    download() {
+      window.location = `/api/file/${this.dataSet.id}/download`
     }
   }
 }

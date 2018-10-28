@@ -3,7 +3,8 @@
     <vs-navbar v-model="activeItem" class="nabarx">
       <!-- <vs-button vs-type="flat" vs-radius="50%" vs-icon="menu"></vs-button> -->
 
-      <vs-navbar-title>
+      <vs-navbar-title class="logo-box">
+        <img src="/icon.png" class="logo" alt="">
         SheReco
       </vs-navbar-title>
 
@@ -86,4 +87,10 @@ export default {
     .centerx
       display flex
       justify-content center
+    .logo
+      width 30px
+    .logo-box
+      display flex
+      justify-content flex-start
+      align-items center
 </style>

@@ -15,7 +15,7 @@
       </div>
     </section>
 
-    <section class="container" v-else>
+    <section class="container" v-if="notFound">
       <h2>検索結果が見つかりませんでした。</h2>
     </section>
   </div>
@@ -40,7 +40,7 @@ export default {
   methods: {
     async fetchSearchResult() {
       const res = await this.ApiGet(`/api/search/${this.$route.query.mode}?q=${this.$route.query.q}`)
-      if (!res.ok) {
+      if (!res.ok || !res.result.length) {
         this.notFound = true
         return
       }
@@ -54,6 +54,7 @@ export default {
 <style lang="stylus">
   .search-view
     .search-box
+      margin 10px 0
       width 100%
       padding 20px
       border solid 1px rgba(44, 62, 80, 0.3)
@@ -61,5 +62,7 @@ export default {
       .title
         font-size 1.6rem
         font-weight bold
+      .tag
+        height 30px
 </style>
 

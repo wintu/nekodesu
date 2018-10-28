@@ -47,8 +47,8 @@ class Api::FileController < ApplicationController
   end
 
   def download
-    datum = Datum.find(params[:id])
-    send_data datum.body, type:'text/csv; charset=shift_jis'
+    datum = Datum.find_by(data_set_id: params[:id])
+    send_data datum.body.encode(Encoding::SHIFT_JIS, undef: :replace, invalid: :replace), type:'text/csv; charset=shift_jis'
   end
 
   def destroy
